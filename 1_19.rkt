@@ -1,0 +1,25 @@
+#lang racket
+
+(define (even? n) (= (remainder n 2) 0))
+
+(define (fib n)
+  (define (iter n p q a b)
+    (define Ta (+ (* p a) (* q b)))
+    (define Tb (+ (* q a) (* p b) (* q b)))
+    (define next-p (+ (* p p) (* q q)))
+    (define next-q (+ (* 2 p q) (* q q)))
+    (cond ((= n 0) a)
+          ((even? n) (iter (/ n 2) next-p next-q a b))
+          (else (iter (/ (- n 1) 2) next-p next-q Ta Tb))))
+  (iter n 0 1 0 1))
+
+(fib 0)
+(fib 1)
+(fib 2)
+(fib 3)
+(fib 4)
+(fib 5)
+(fib 6)
+(fib 7)
+(fib 8)
+(fib 12)
